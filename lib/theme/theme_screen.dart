@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:youtube_shorts/provider/theme_provider.dart';
+import 'package:youtube_shorts/theme/circular_clipper.dart';
 
 class ThemeScreen extends ConsumerStatefulWidget {
   const ThemeScreen({
@@ -74,35 +75,28 @@ class _ThemeScreenState extends ConsumerState<ThemeScreen>
       ),
       body: Stack(
         children: [
-          // Container(
-          //   decoration: BoxDecoration(
-          //     color: _backgroundColor,
-          //   ),
-          // ),
+          Container(
+            decoration: BoxDecoration(
+              color: _backgroundColor,
+            ),
+          ),
           Center(
             child: Builder(
               builder: (builderContext) {
-                return Container(
-                  decoration: BoxDecoration(
-                    color: ref.watch(themeProvider).isDark
-                        ? Colors.black
-                        : Colors.white,
+                return ClipPath(
+                  clipper: CircularClipper(
+                    centerX: width,
+                    centerY: 0,
+                    radius: _clipperRadiusAnimation.value,
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: ref.watch(themeProvider).isDark
+                          ? Colors.black
+                          : Colors.white,
+                    ),
                   ),
                 );
-                // return ClipPath(
-                //   clipper: CircularClipper(
-                //     centerX: width,
-                //     centerY: 0,
-                //     radius: _clipperRadiusAnimation.value,
-                //   ),
-                //   child: Container(
-                //     decoration: BoxDecoration(
-                //       color: ref.watch(themeProvider).isDark
-                //           ? Colors.black
-                //           : Colors.white,
-                //     ),
-                //   ),
-                // );
               },
             ),
           ),
