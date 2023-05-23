@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'theme/theme_screen.dart';
+import 'content/content_screen.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -12,11 +12,11 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Flutter Demo',
-      home: const Scaffold(
+      home: Scaffold(
         body: Center(
-          child: ThemeScreen(),
+          child: ContentScreen(),
         ),
       ),
     );
