@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:youtube_shorts/content/circular_clipper.dart';
 import 'package:youtube_shorts/provider/theme_provider.dart';
-import 'package:youtube_shorts/theme/circular_clipper.dart';
 
-class ThemeScreen extends ConsumerStatefulWidget {
-  const ThemeScreen({
+class ContentScreen extends ConsumerStatefulWidget {
+  const ContentScreen({
     Key? key,
   }) : super(key: key);
 
   @override
-  ConsumerState<ThemeScreen> createState() => _ThemeScreenState();
+  ConsumerState<ContentScreen> createState() => _ContentScreenState();
 }
 
-class _ThemeScreenState extends ConsumerState<ThemeScreen>
+class _ContentScreenState extends ConsumerState<ContentScreen>
     with TickerProviderStateMixin {
   late AnimationController _clipperAnimationController;
-  late CurvedAnimation _clipperAnimationCurve;
   late Animation<double> _clipperRadiusAnimation;
   Color? _backgroundColor;
 
@@ -28,10 +26,10 @@ class _ThemeScreenState extends ConsumerState<ThemeScreen>
 
     _clipperAnimationController = AnimationController(
         duration: const Duration(milliseconds: 800), vsync: this);
-    _clipperAnimationCurve = CurvedAnimation(
-        parent: _clipperAnimationController, curve: Curves.ease);
-    _clipperRadiusAnimation =
-        Tween<double>(begin: 0, end: 1200).animate(_clipperAnimationCurve);
+
+    _clipperRadiusAnimation = Tween<double>(begin: 0, end: 1200).animate(
+        CurvedAnimation(
+            parent: _clipperAnimationController, curve: Curves.ease));
     _clipperRadiusAnimation.addListener(() {
       setState(() {});
     });

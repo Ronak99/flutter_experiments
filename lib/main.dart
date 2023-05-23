@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:youtube_shorts/provider/theme_provider.dart';
 
-import 'theme/theme_screen.dart';
+import 'content/content_screen.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -13,16 +12,11 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        brightness: ref.watch(themeProvider).isDark
-            ? Brightness.dark
-            : Brightness.light,
-      ),
-      home: const Scaffold(
+      home: Scaffold(
         body: Center(
-          child: ThemeScreen(),
+          child: ContentScreen(),
         ),
       ),
     );
